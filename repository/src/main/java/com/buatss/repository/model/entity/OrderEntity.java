@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
+@Table(name = "orders")
 @NoArgsConstructor
 @Getter
 @Setter
