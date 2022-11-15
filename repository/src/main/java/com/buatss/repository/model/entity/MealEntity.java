@@ -1,4 +1,4 @@
-package com.buatss.repository.model;
+package com.buatss.repository.model.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,5 +12,5 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @ToString
-public class DrinkExtrasEntity extends AbstractProductEntity {
+public class MealEntity extends AbstractProductEntity {
 }

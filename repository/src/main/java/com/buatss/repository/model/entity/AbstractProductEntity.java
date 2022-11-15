@@ -1,4 +1,4 @@
-package com.buatss.repository.model;
+package com.buatss.repository.model.entity;
 
 import lombok.*;
 

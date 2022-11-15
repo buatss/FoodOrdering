@@ -1,8 +1,7 @@
-package com.buatss.repository.model;
+package com.buatss.repository.model.entity;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -10,10 +9,16 @@ import java.util.Set;
 
 @Entity
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
-public class OrderEntity {
+@Data
+public class CuisineEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
+    @Column(nullable = false, unique = true)
+    private String name;
+
     @OneToMany
     @ToString.Exclude
     Set<MealEntity> meals;
@@ -25,12 +30,4 @@ public class OrderEntity {
     @OneToMany
     @ToString.Exclude
     Set<DrinkEntity> drinks;
-
-    @OneToMany
-    @ToString.Exclude
-    Set<DrinkExtrasEntity> drinkExtras;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
 }
