@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Data
 public abstract class AbstractProductEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
     private Integer id;
 
