@@ -1,8 +1,10 @@
 package com.buatss.repository.model.converter;
 
 import com.buatss.repository.model.dto.DrinkDto;
+import com.buatss.repository.model.dto.DrinkExtrasDto;
 import com.buatss.repository.model.dto.MealDto;
 import com.buatss.repository.model.entity.DrinkEntity;
+import com.buatss.repository.model.entity.DrinkExtrasEntity;
 import com.buatss.repository.model.entity.MealEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,10 @@ public class EntityDtoConverter {
         return modelMapper.map(entity, DrinkDto.class);
     }
 
+    public DrinkExtrasDto convertEntityToDto(DrinkExtrasEntity entity) {
+        return modelMapper.map(entity, DrinkExtrasDto.class);
+    }
+
     public TreeSet<MealDto> convertMealEntityListToMealDtoTreeSet(List<MealEntity> entities) {
         return entities.stream()
                        .map(entity -> modelMapper.map(entity, MealDto.class))
@@ -40,5 +46,12 @@ public class EntityDtoConverter {
         return entities.stream()
                        .map(entity -> modelMapper.map(entity, DrinkDto.class))
                        .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparingLong(DrinkDto::getId))));
+    }
+
+    public TreeSet<DrinkExtrasDto> convertDrinkExtrasEntityListToDrinkExtrasDtoTreeSet(
+            List<DrinkExtrasEntity> entities) {
+        return entities.stream()
+                       .map(entity -> modelMapper.map(entity, DrinkExtrasDto.class))
+                       .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparingLong(DrinkExtrasDto::getId))));
     }
 }
