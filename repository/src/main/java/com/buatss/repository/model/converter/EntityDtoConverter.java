@@ -40,6 +40,10 @@ public class EntityDtoConverter {
         return modelMapper.map(entity, CuisineDto.class);
     }
 
+    public CustomerDto convertEntityToDto(CustomerEntity entity) {
+        return modelMapper.map(entity, CustomerDto.class);
+    }
+
     public TreeSet<MealDto> convertMealEntityListToMealDtoTreeSet(List<MealEntity> entities) {
         return entities.stream()
                        .map(entity -> modelMapper.map(entity, MealDto.class))
