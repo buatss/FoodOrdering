@@ -20,6 +20,7 @@
         <spring-data-jpa.version>2.7.5</spring-data-jpa.version>
         <lombok.version>1.18.24</lombok.version>
         <hibernate-entitymanager.version>5.6.11.Final</hibernate-entitymanager.version>
+        <modelmapper.version>3.1.0</modelmapper.version>
     </properties>
 
     <dependencies>
@@ -50,6 +51,10 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate-entitymanager.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>${modelmapper.version}</version>
+        </dependency>
     </dependencies>
 </project>
