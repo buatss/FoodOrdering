@@ -27,4 +27,10 @@ public class OrderDto {
     private BigDecimal totalPrice;
 
     private LocalDateTime purchaseTime;
+
+    @Override
+    public String toString() {
+        return "OrderDto{" + "meals=" + meals + ", desserts=" + desserts + ", drinks=" + drinks + ", drinkExtras=" +
+                drinkExtras + ", id=" + id + ", totalPrice=" + totalPrice + ", purchaseTime=" + purchaseTime + '}';
+    }
 }

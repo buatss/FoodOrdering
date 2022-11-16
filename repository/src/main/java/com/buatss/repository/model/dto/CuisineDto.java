@@ -19,4 +19,10 @@ public class CuisineDto {
     private Integer id;
 
     private String name;
+
+    @Override
+    public String toString() {
+        return "CuisineDto{" + "meals=" + meals + ", desserts=" + desserts + ", drinks=" + drinks + ", drinkExtras=" +
+                drinkExtras + ", id=" + id + ", name='" + name + '\'' + '}';
+    }
 }

@@ -1,6 +1,7 @@
 package com.buatss.repository.model.dto;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
@@ -17,10 +18,5 @@ public abstract class AbstractProductDto<T extends AbstractProductDto<T>> implem
     public int compareTo(T o) {
         AbstractProductDto<T> product = o;
         return this.getName().compareTo(product.name);
-    }
-
-    @Override
-    public String toString() {
-        return "AbstractProductDto{" + "id=" + id + ", name='" + name + '\'' + ", price=" + price + '}';
     }
 }
