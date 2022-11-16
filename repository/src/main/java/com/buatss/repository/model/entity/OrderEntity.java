@@ -15,10 +15,6 @@ import java.util.Set;
 @Setter
 @ToString
 public class OrderEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
     @OneToMany
     @ToString.Exclude
     Set<MealEntity> meals;
@@ -34,6 +30,10 @@ public class OrderEntity {
     @OneToMany
     @ToString.Exclude
     Set<DrinkExtrasEntity> drinkExtras;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(scale = 2, nullable = false)
     @NonNull
