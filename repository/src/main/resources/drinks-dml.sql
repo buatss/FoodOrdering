@@ -1,0 +1,7 @@
+INSERT INTO drinks (name, price) VALUES ('Coke', '3.99')
+INSERT INTO drinks (name, price) VALUES ('Fanta', '3.99')
+INSERT INTO drinks (name, price) VALUES ('Sprite', '3.99')
+INSERT INTO drinks (name, price) VALUES ('Water', '0.99')
+INSERT INTO drinks (name, price) VALUES ('Beer', '9.99')
+INSERT INTO drinks (name, price) VALUES ('Whisky', '20.99')
+INSERT INTO drinks (name, price) VALUES ('Vodka', '14.99')
