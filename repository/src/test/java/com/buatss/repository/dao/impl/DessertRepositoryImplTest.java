@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
         loader = AnnotationConfigContextLoader.class)
 @SpringBootTest
 @Transactional
-@Sql(value = "/desserts-dml.sql")
+@Sql(value = "/example_data-dml.sql")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class DessertRepositoryImplTest {
     private final DessertDto expected1 = new DessertDto();

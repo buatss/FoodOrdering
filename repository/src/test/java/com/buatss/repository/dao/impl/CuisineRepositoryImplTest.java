@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
         loader = AnnotationConfigContextLoader.class)
 @SpringBootTest
 @Transactional
-@Sql(value = "/cuisines-dml.sql")
+@Sql(value = "/example_data-dml.sql")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class CuisineRepositoryImplTest {
     private final CuisineDto expected1 = new CuisineDto();
@@ -32,8 +32,8 @@ class CuisineRepositoryImplTest {
 
     @BeforeEach
     void setUp() {
-        expected1.setId(1);
-        expected1.setName("Polish");
+        expected1.setId(2);
+        expected1.setName("Mexican");
         expected1.setDesserts(new TreeSet<>());
         expected1.setDrinks(new TreeSet<>());
         expected1.setMeals(new TreeSet<>());
@@ -41,7 +41,7 @@ class CuisineRepositoryImplTest {
 
     @Test
     void findById_found_returnsOptionalDto() {
-        Optional<CuisineDto> result = repository.findById(1);
+        Optional<CuisineDto> result = repository.findById(2);
 
         assertTrue(result.isPresent());
         assertEquals(expected1, result.get());

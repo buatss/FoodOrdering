@@ -12,6 +12,18 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 public class CuisineEntity {
+    @OneToMany(mappedBy = "cuisine")
+    @ToString.Exclude
+    Set<MealEntity> meals;
+
+    @OneToMany(mappedBy = "cuisine")
+    @ToString.Exclude
+    Set<DessertEntity> desserts;
+
+    @OneToMany(mappedBy = "cuisine")
+    @ToString.Exclude
+    Set<DrinkEntity> drinks;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -19,16 +31,4 @@ public class CuisineEntity {
 
     @Column(nullable = false, unique = true)
     private String name;
-
-    @OneToMany
-    @ToString.Exclude
-    Set<MealEntity> meals;
-
-    @OneToMany
-    @ToString.Exclude
-    Set<DessertEntity> desserts;
-
-    @OneToMany
-    @ToString.Exclude
-    Set<DrinkEntity> drinks;
 }

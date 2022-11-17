@@ -24,14 +24,14 @@ import static org.junit.jupiter.api.Assertions.*;
         loader = AnnotationConfigContextLoader.class)
 @SpringBootTest
 @Transactional
-@Sql(value = "/meals-dml.sql")
+@Sql(value = "/example_data-dml.sql")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class MealRepositoryImplTest {
 
+    private final MealDto expected1 = new MealDto();
+
     @Autowired
     MealRepository mealRepository;
-
-    private final MealDto expected1 = new MealDto();
 
     @BeforeEach
     void setUp() {

@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,4 +17,7 @@ import javax.persistence.Table;
 @Setter
 @ToString
 public class MealEntity extends AbstractProductEntity {
+    @ManyToOne
+    @JoinColumn(name = "cuisine_id", nullable = false)
+    private CuisineEntity cuisine;
 }
