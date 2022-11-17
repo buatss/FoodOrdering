@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 @Data
 @NoArgsConstructor
-public class CuisineDto {
+public class CuisineDto implements Comparable<CuisineDto> {
     TreeSet<MealDto> meals;
 
     TreeSet<DessertDto> desserts;
@@ -24,5 +24,10 @@ public class CuisineDto {
     public String toString() {
         return "CuisineDto{" + "meals=" + meals + ", desserts=" + desserts + ", drinks=" + drinks + ", drinkExtras=" +
                 drinkExtras + ", id=" + id + ", name='" + name + '\'' + '}';
+    }
+
+    @Override
+    public int compareTo(CuisineDto o) {
+        return this.id.compareTo(o.id);
     }
 }
