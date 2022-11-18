@@ -7,6 +7,7 @@ import com.buatss.repository.model.entity.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
@@ -19,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ContextConfiguration(classes = {AppConfig.class, EntityDtoConverter.class},
         loader = AnnotationConfigContextLoader.class)
 @SpringBootTest
+@ActiveProfiles("dev")
 class EntityDtoConverterTest {
     private final EntityDtoConverter converter;
 
