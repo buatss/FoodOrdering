@@ -44,6 +44,22 @@ public class EntityDtoConverter {
         return modelMapper.map(entity, CustomerDto.class);
     }
 
+    public MealEntity convertDtoToEntity(MealDto dto) {
+        return modelMapper.map(dto, MealEntity.class);
+    }
+
+    public DessertEntity convertDtoToEntity(DessertDto dto) {
+        return modelMapper.map(dto, DessertEntity.class);
+    }
+
+    public DrinkEntity convertDtoToEntity(DrinkDto dto) {
+        return modelMapper.map(dto, DrinkEntity.class);
+    }
+
+    public DrinkExtrasEntity convertDtoToEntity(DrinkExtrasDto dto) {
+        return modelMapper.map(dto, DrinkExtrasEntity.class);
+    }
+
     public OrderDto convertEntityToDto(OrderEntity entity) {
         return modelMapper.map(entity, OrderDto.class);
     }
