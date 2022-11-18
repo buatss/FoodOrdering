@@ -1,13 +1,11 @@
 package com.buatss.repository.config;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -22,15 +20,14 @@ import java.util.Properties;
 @ComponentScan("com.buatss")
 @EnableTransactionManagement
 public class AppConfig {
-    @Bean(name = "dataSource")
-    DataSource dataSource() {
-        return testDB.getEmbeddedDatabase();
-    }
+
+    @Autowired
+    DataSource dataSource;
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
+        em.setDataSource(dataSource);
         em.setPackagesToScan("com.buatss");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -61,22 +58,5 @@ public class AppConfig {
         properties.setProperty("spring.jpa.defer-datasource-initialization", "true");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         return properties;
-    }
-
-    private static class testDB {
-        private static EmbeddedDatabase embeddedDatabase;
-
-        private static void buildDB() {
-            EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-            builder.setType(EmbeddedDatabaseType.H2);
-            embeddedDatabase = builder.build();
-        }
-
-        private static EmbeddedDatabase getEmbeddedDatabase() {
-            if (embeddedDatabase == null) {
-                buildDB();
-            }
-            return embeddedDatabase;
-        }
     }
 }
