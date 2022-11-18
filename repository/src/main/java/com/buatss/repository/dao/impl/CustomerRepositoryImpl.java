@@ -4,6 +4,7 @@ import com.buatss.repository.dao.CustomerRepository;
 import com.buatss.repository.model.converter.EntityDtoConverter;
 import com.buatss.repository.model.dto.CustomerDto;
 import com.buatss.repository.model.entity.CustomerEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
@@ -14,6 +15,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.Optional;
 
+@Repository
 public class CustomerRepositoryImpl extends AbstractRepositoryImpl implements CustomerRepository {
     public CustomerRepositoryImpl(EntityDtoConverter converter) {
         super(converter);

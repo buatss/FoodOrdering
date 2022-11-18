@@ -4,6 +4,7 @@ import com.buatss.repository.dao.DrinkExtrasRepository;
 import com.buatss.repository.model.converter.EntityDtoConverter;
 import com.buatss.repository.model.dto.DrinkExtrasDto;
 import com.buatss.repository.model.entity.DrinkExtrasEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
@@ -13,6 +14,7 @@ import javax.persistence.criteria.Root;
 import java.util.Optional;
 import java.util.TreeSet;
 
+@Repository
 public class DrinkExtrasRepositoryImpl extends AbstractRepositoryImpl implements DrinkExtrasRepository {
     public DrinkExtrasRepositoryImpl(EntityDtoConverter converter) {
         super(converter);

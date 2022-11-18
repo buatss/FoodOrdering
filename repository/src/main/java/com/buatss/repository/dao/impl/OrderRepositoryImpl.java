@@ -4,10 +4,12 @@ import com.buatss.repository.dao.OrderRepository;
 import com.buatss.repository.model.converter.EntityDtoConverter;
 import com.buatss.repository.model.dto.OrderDto;
 import com.buatss.repository.model.entity.OrderEntity;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.PersistenceException;
 import java.util.Optional;
 
+@Repository
 public class OrderRepositoryImpl extends AbstractRepositoryImpl implements OrderRepository {
     public OrderRepositoryImpl(EntityDtoConverter converter) {
         super(converter);

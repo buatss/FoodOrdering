@@ -4,6 +4,7 @@ import com.buatss.repository.dao.MealRepository;
 import com.buatss.repository.model.converter.EntityDtoConverter;
 import com.buatss.repository.model.dto.MealDto;
 import com.buatss.repository.model.entity.MealEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
@@ -13,6 +14,7 @@ import javax.persistence.criteria.Root;
 import java.util.Optional;
 import java.util.TreeSet;
 
+@Repository
 public class MealRepositoryImpl extends AbstractRepositoryImpl implements MealRepository {
     public MealRepositoryImpl(EntityDtoConverter converter) {
         super(converter);
