@@ -1,6 +1,9 @@
 package com.buatss.repository.model.entity;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -11,9 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "orders")
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 public class OrderEntity {
     @OneToMany
     @ToString.Exclude
