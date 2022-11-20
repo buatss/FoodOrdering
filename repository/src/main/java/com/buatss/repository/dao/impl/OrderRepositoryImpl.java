@@ -5,6 +5,7 @@ import com.buatss.repository.model.converter.EntityDtoConverter;
 import com.buatss.repository.model.dto.OrderDto;
 import com.buatss.repository.model.entity.OrderEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.PersistenceException;
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class OrderRepositoryImpl extends AbstractRepositoryImpl implements Order
     }
 
     @Override
+    @Transactional
     public Optional<OrderDto> findById(int id) {
         try {
             return Optional.of(converter.convertEntityToDto(entityManager.find(OrderEntity.class, id)));
@@ -26,6 +28,7 @@ public class OrderRepositoryImpl extends AbstractRepositoryImpl implements Order
     }
 
     @Override
+    @Transactional
     public Optional<OrderDto> addOrder(OrderEntity order) {
         try {
             entityManager.persist(order);
