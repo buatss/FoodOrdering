@@ -12,13 +12,13 @@ public abstract class AbstractProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
-    private Integer id;
+    protected Integer id;
 
     @Column(unique = true, nullable = false)
     @NonNull
-    private String name;
+    protected String name;
 
     @Column(scale = 2, nullable = false)
     @NonNull
-    private BigDecimal price;
+    protected BigDecimal price;
 }
