@@ -42,6 +42,6 @@ public class DrinkRepositoryImpl extends AbstractRepositoryImpl implements Drink
         TypedQuery<DrinkEntity> query = entityManager.createQuery(cq);
         query.setFirstResult((pageNumber - 1) * pageSize);
         query.setMaxResults(pageSize);
-        return Optional.of(converter.convertDrinkEntityListToDrinkDtoTreeSet(query.getResultList()));
+        return Optional.of(converter.convertDrinkEntityCollectionToDrinkDtoTreeSet(query.getResultList()));
     }
 }

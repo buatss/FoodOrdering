@@ -41,6 +41,6 @@ public class MealRepositoryImpl extends AbstractRepositoryImpl implements MealRe
         TypedQuery<MealEntity> query = entityManager.createQuery(cq);
         query.setFirstResult((pageNumber - 1) * pageSize);
         query.setMaxResults(pageSize);
-        return Optional.of(converter.convertMealEntityListToMealDtoTreeSet(query.getResultList()));
+        return Optional.of(converter.convertMealEntityCollectionToMealDtoTreeSet(query.getResultList()));
     }
 }

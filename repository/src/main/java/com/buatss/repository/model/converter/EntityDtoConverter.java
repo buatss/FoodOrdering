@@ -2,96 +2,130 @@ package com.buatss.repository.model.converter;
 
 import com.buatss.repository.model.dto.*;
 import com.buatss.repository.model.entity.*;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.Comparator;
-import java.util.List;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 @Component
 public class EntityDtoConverter {
-    private final ModelMapper modelMapper;
-
-    @Autowired
-    public EntityDtoConverter(ModelMapper modelMapper) {
-        this.modelMapper = modelMapper;
-    }
 
     public MealDto convertEntityToDto(MealEntity entity) {
-        return modelMapper.map(entity, MealDto.class);
+        MealDto dto = new MealDto();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setPrice(entity.getPrice());
+        return dto;
     }
 
     public DrinkDto convertEntityToDto(DrinkEntity entity) {
-        return modelMapper.map(entity, DrinkDto.class);
+        DrinkDto dto = new DrinkDto();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setPrice(entity.getPrice());
+        return dto;
     }
 
     public DrinkExtrasDto convertEntityToDto(DrinkExtrasEntity entity) {
-        return modelMapper.map(entity, DrinkExtrasDto.class);
+        DrinkExtrasDto dto = new DrinkExtrasDto();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setPrice(entity.getPrice());
+        return dto;
     }
 
     public DessertDto convertEntityToDto(DessertEntity entity) {
-        return modelMapper.map(entity, DessertDto.class);
+        DessertDto dto = new DessertDto();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setPrice(entity.getPrice());
+        return dto;
     }
 
     public CuisineDto convertEntityToDto(CuisineEntity entity) {
-        return modelMapper.map(entity, CuisineDto.class);
-    }
-
-    public CustomerDto convertEntityToDto(CustomerEntity entity) {
-        return modelMapper.map(entity, CustomerDto.class);
+        CuisineDto dto = new CuisineDto();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setMeals(convertMealEntityCollectionToMealDtoTreeSet(entity.getMeals()));
+        dto.setDrinks(convertDrinkEntityCollectionToDrinkDtoTreeSet(entity.getDrinks()));
+        dto.setDesserts(convertDessertEntityCollectionToDessertDtoTreeSet(entity.getDesserts()));
+        return dto;
     }
 
     public MealEntity convertDtoToEntity(MealDto dto) {
-        return modelMapper.map(dto, MealEntity.class);
+        MealEntity entity = new MealEntity();
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setPrice(dto.getPrice());
+        return entity;
     }
 
     public DessertEntity convertDtoToEntity(DessertDto dto) {
-        return modelMapper.map(dto, DessertEntity.class);
+        DessertEntity entity = new DessertEntity();
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setPrice(dto.getPrice());
+        return entity;
     }
 
     public DrinkEntity convertDtoToEntity(DrinkDto dto) {
-        return modelMapper.map(dto, DrinkEntity.class);
+        DrinkEntity entity = new DrinkEntity();
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setPrice(dto.getPrice());
+        return entity;
     }
 
     public DrinkExtrasEntity convertDtoToEntity(DrinkExtrasDto dto) {
-        return modelMapper.map(dto, DrinkExtrasEntity.class);
+        DrinkExtrasEntity entity = new DrinkExtrasEntity();
+        entity.setId(dto.getId());
+        entity.setName(dto.getName());
+        entity.setPrice(dto.getPrice());
+        return entity;
     }
 
     public OrderDto convertEntityToDto(OrderEntity entity) {
-        return modelMapper.map(entity, OrderDto.class);
+        OrderDto dto = new OrderDto();
+        dto.setId(entity.getId());
+        dto.setPurchaseTime(entity.getPurchaseTime());
+        dto.setTotalPrice(entity.getTotalPrice());
+        dto.setDesserts(convertDessertEntityCollectionToDessertDtoTreeSet(entity.getDesserts()));
+        dto.setDrinks(convertDrinkEntityCollectionToDrinkDtoTreeSet(entity.getDrinks()));
+        dto.setMeals(convertMealEntityCollectionToMealDtoTreeSet(entity.getMeals()));
+        dto.setDrinkExtras(convertDrinkExtrasEntityCollectionToDrinkExtrasDtoTreeSet(entity.getDrinkExtras()));
+        return dto;
     }
 
-    public TreeSet<MealDto> convertMealEntityListToMealDtoTreeSet(List<MealEntity> entities) {
+    public TreeSet<MealDto> convertMealEntityCollectionToMealDtoTreeSet(Collection<MealEntity> entities) {
         return entities.stream()
-                       .map(entity -> modelMapper.map(entity, MealDto.class))
-                       .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparingLong(MealDto::getId))));
+                       .map(this::convertEntityToDto)
+                       .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(MealDto::getName))));
     }
 
-    public TreeSet<DrinkDto> convertDrinkEntityListToDrinkDtoTreeSet(List<DrinkEntity> entities) {
+    public TreeSet<DrinkDto> convertDrinkEntityCollectionToDrinkDtoTreeSet(Collection<DrinkEntity> entities) {
         return entities.stream()
-                       .map(entity -> modelMapper.map(entity, DrinkDto.class))
-                       .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparingLong(DrinkDto::getId))));
+                       .map(this::convertEntityToDto)
+                       .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(DrinkDto::getName))));
     }
 
-    public TreeSet<DrinkExtrasDto> convertDrinkExtrasEntityListToDrinkExtrasDtoTreeSet(
-            List<DrinkExtrasEntity> entities) {
+    public TreeSet<DrinkExtrasDto> convertDrinkExtrasEntityCollectionToDrinkExtrasDtoTreeSet(
+            Collection<DrinkExtrasEntity> entities) {
         return entities.stream()
-                       .map(entity -> modelMapper.map(entity, DrinkExtrasDto.class))
-                       .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparingLong(DrinkExtrasDto::getId))));
+                       .map(this::convertEntityToDto)
+                       .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(DrinkExtrasDto::getName))));
     }
 
-    public TreeSet<DessertDto> convertDessertEntityListToDessertDtoTreeSet(List<DessertEntity> entities) {
+    public TreeSet<DessertDto> convertDessertEntityCollectionToDessertDtoTreeSet(Collection<DessertEntity> entities) {
         return entities.stream()
-                       .map(entity -> modelMapper.map(entity, DessertDto.class))
-                       .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparingLong(DessertDto::getId))));
+                       .map(this::convertEntityToDto)
+                       .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(DessertDto::getName))));
     }
 
-    public TreeSet<CuisineDto> convertCuisineEntityListToCuisineDtoTreeSet(List<CuisineEntity> entities) {
+    public TreeSet<CuisineDto> convertCuisineEntityCollectionToCuisineDtoTreeSet(Collection<CuisineEntity> entities) {
         return entities.stream()
-                       .map(entity -> modelMapper.map(entity, CuisineDto.class))
-                       .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparingLong(CuisineDto::getId))));
+                       .map(this::convertEntityToDto)
+                       .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(CuisineDto::getId))));
     }
 }

@@ -41,6 +41,6 @@ public class CuisineRepositoryImpl extends AbstractRepositoryImpl implements Cui
         TypedQuery<CuisineEntity> query = entityManager.createQuery(cq);
         query.setFirstResult((pageNumber - 1) * pageSize);
         query.setMaxResults(pageSize);
-        return Optional.of(converter.convertCuisineEntityListToCuisineDtoTreeSet(query.getResultList()));
+        return Optional.of(converter.convertCuisineEntityCollectionToCuisineDtoTreeSet(query.getResultList()));
     }
 }

@@ -78,7 +78,7 @@ class EntityDtoConverterTest {
         List<MealEntity> given = provider.provideMealEntityList();
         TreeSet<MealDto> expected = provider.provideTreeSetOfMealDto();
 
-        assertEquals(expected, converter.convertMealEntityListToMealDtoTreeSet(given));
+        assertEquals(expected, converter.convertMealEntityCollectionToMealDtoTreeSet(given));
     }
 
     @Test
@@ -86,7 +86,7 @@ class EntityDtoConverterTest {
         List<DrinkEntity> given = provider.provideDrinkEntityList();
         TreeSet<DrinkDto> expected = provider.provideTreeSetOfDrinkDto();
 
-        assertEquals(expected, converter.convertDrinkEntityListToDrinkDtoTreeSet(given));
+        assertEquals(expected, converter.convertDrinkEntityCollectionToDrinkDtoTreeSet(given));
     }
 
     @Test
@@ -94,7 +94,7 @@ class EntityDtoConverterTest {
         List<DrinkExtrasEntity> given = provider.provideDrinkExtrasEntityList();
         TreeSet<DrinkExtrasDto> expected = provider.provideTreeSetOfDrinkExtrasDto();
 
-        assertEquals(expected, converter.convertDrinkExtrasEntityListToDrinkExtrasDtoTreeSet(given));
+        assertEquals(expected, converter.convertDrinkExtrasEntityCollectionToDrinkExtrasDtoTreeSet(given));
     }
 
     @Test
@@ -102,7 +102,7 @@ class EntityDtoConverterTest {
         List<DessertEntity> given = provider.provideDessertEntityList();
         TreeSet<DessertDto> expected = provider.provideTreeSetOfDessertDto();
 
-        assertEquals(expected, converter.convertDessertEntityListToDessertDtoTreeSet(given));
+        assertEquals(expected, converter.convertDessertEntityCollectionToDessertDtoTreeSet(given));
     }
 
     @Test
@@ -110,6 +110,6 @@ class EntityDtoConverterTest {
         List<CuisineEntity> given = provider.provideCuisineEntityList();
         TreeSet<CuisineDto> expected = provider.provideTreeSetOfCuisineDto();
 
-        assertEquals(expected, converter.convertCuisineEntityListToCuisineDtoTreeSet(given));
+        assertEquals(expected, converter.convertCuisineEntityCollectionToCuisineDtoTreeSet(given));
     }
 }

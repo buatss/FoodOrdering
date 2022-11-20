@@ -41,6 +41,6 @@ public class DessertRepositoryImpl extends AbstractRepositoryImpl implements Des
         TypedQuery<DessertEntity> query = entityManager.createQuery(cq);
         query.setFirstResult((pageNumber - 1) * pageSize);
         query.setMaxResults(pageSize);
-        return Optional.of(converter.convertDessertEntityListToDessertDtoTreeSet(query.getResultList()));
+        return Optional.of(converter.convertDessertEntityCollectionToDessertDtoTreeSet(query.getResultList()));
     }
 }
