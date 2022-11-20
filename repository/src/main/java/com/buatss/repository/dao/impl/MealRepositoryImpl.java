@@ -25,7 +25,7 @@ public class MealRepositoryImpl extends AbstractRepositoryImpl implements MealRe
     public Optional<MealDto> findById(int id) {
         try {
             return Optional.of(converter.convertEntityToDto(entityManager.find(MealEntity.class, id)));
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NullPointerException e) {
             logger.info(e.getClass() + " " + e.getMessage());
             return Optional.empty();
         }

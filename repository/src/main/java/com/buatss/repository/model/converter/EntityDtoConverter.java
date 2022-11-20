@@ -9,6 +9,8 @@ import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.isNull;
+
 @Component
 public class EntityDtoConverter {
 
@@ -91,10 +93,31 @@ public class EntityDtoConverter {
         dto.setId(entity.getId());
         dto.setPurchaseTime(entity.getPurchaseTime());
         dto.setTotalPrice(entity.getTotalPrice());
-        dto.setDesserts(convertDessertEntityCollectionToDessertDtoTreeSet(entity.getDesserts()));
-        dto.setDrinks(convertDrinkEntityCollectionToDrinkDtoTreeSet(entity.getDrinks()));
-        dto.setMeals(convertMealEntityCollectionToMealDtoTreeSet(entity.getMeals()));
-        dto.setDrinkExtras(convertDrinkExtrasEntityCollectionToDrinkExtrasDtoTreeSet(entity.getDrinkExtras()));
+
+        if (isNull(entity.getDesserts())) {
+            dto.setDesserts(new TreeSet<>());
+        } else {
+            dto.setDesserts(convertDessertEntityCollectionToDessertDtoTreeSet(entity.getDesserts()));
+        }
+
+        if (isNull(entity.getDrinks())) {
+            dto.setDrinks(new TreeSet<>());
+        } else {
+            dto.setDrinks(convertDrinkEntityCollectionToDrinkDtoTreeSet(entity.getDrinks()));
+        }
+
+        if (isNull(entity.getMeals())) {
+            dto.setMeals(new TreeSet<>());
+        } else {
+            dto.setMeals(convertMealEntityCollectionToMealDtoTreeSet(entity.getMeals()));
+        }
+
+        if (isNull(entity.getDrinkExtras())) {
+            dto.setDrinkExtras(new TreeSet<>());
+        } else {
+            dto.setDrinkExtras(convertDrinkExtrasEntityCollectionToDrinkExtrasDtoTreeSet(entity.getDrinkExtras()));
+        }
+
         return dto;
     }
 

@@ -19,7 +19,7 @@ public class OrderRepositoryImpl extends AbstractRepositoryImpl implements Order
     public Optional<OrderDto> findById(int id) {
         try {
             return Optional.of(converter.convertEntityToDto(entityManager.find(OrderEntity.class, id)));
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NullPointerException e) {
             logger.info(e.getClass() + " " + e.getMessage());
             return Optional.empty();
         }
@@ -29,10 +29,10 @@ public class OrderRepositoryImpl extends AbstractRepositoryImpl implements Order
     public Optional<OrderDto> addOrder(OrderEntity order) {
         try {
             entityManager.persist(order);
-        } catch (PersistenceException e) {
+            return Optional.of(converter.convertEntityToDto(order));
+        } catch (PersistenceException | NullPointerException e) {
             logger.info(e.getClass() + " " + e.getMessage());
             return Optional.empty();
         }
-        return Optional.of(converter.convertEntityToDto(order));
     }
 }

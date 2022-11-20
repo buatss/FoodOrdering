@@ -25,7 +25,7 @@ public class CuisineRepositoryImpl extends AbstractRepositoryImpl implements Cui
     public Optional<CuisineDto> findById(int id) {
         try {
             return Optional.of(converter.convertEntityToDto(entityManager.find(CuisineEntity.class, id)));
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NullPointerException e) {
             logger.debug(e.getClass() + " " + e.getMessage());
             return Optional.empty();
         }

@@ -25,7 +25,7 @@ public class DessertRepositoryImpl extends AbstractRepositoryImpl implements Des
     public Optional<DessertDto> findById(int id) {
         try {
             return Optional.of(converter.convertEntityToDto(entityManager.find(DessertEntity.class, id)));
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NullPointerException e) {
             logger.debug(e.getClass() + " " + e.getMessage());
             return Optional.empty();
         }

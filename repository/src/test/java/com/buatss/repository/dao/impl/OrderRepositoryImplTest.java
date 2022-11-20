@@ -69,10 +69,10 @@ class OrderRepositoryImplTest {
 
         assertTrue(result.isPresent());
         softly.assertThat(result.get().getId()).isEqualTo(2);
-        softly.assertThat(result.get().getDesserts()).isNull();
-        softly.assertThat(result.get().getDrinks()).isNull();
-        softly.assertThat(result.get().getMeals()).isNull();
-        softly.assertThat(result.get().getDrinkExtras()).isNull();
+        softly.assertThat(result.get().getDesserts()).isEqualTo(new TreeSet<>());
+        softly.assertThat(result.get().getDrinks()).isEqualTo(new TreeSet<>());
+        softly.assertThat(result.get().getMeals()).isEqualTo(new TreeSet<>());
+        softly.assertThat(result.get().getDrinkExtras()).isEqualTo(new TreeSet<>());
         softly.assertThat(result.get().getPurchaseTime()).isAfterOrEqualTo(now);
         softly.assertAll();
     }

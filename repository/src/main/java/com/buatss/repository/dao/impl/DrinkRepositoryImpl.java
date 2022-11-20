@@ -26,7 +26,7 @@ public class DrinkRepositoryImpl extends AbstractRepositoryImpl implements Drink
     public Optional<DrinkDto> findById(int id) {
         try {
             return Optional.of(converter.convertEntityToDto(entityManager.find(DrinkEntity.class, id)));
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | NullPointerException e) {
             logger.debug(e.getClass() + " " + e.getMessage());
             return Optional.empty();
         }
