@@ -32,20 +32,6 @@ public class DataProvider {
         return dto;
     }
 
-    public CustomerEntity provideCustomerEntity() {
-        CustomerEntity entity = new CustomerEntity();
-        entity.setId(1);
-        entity.setName("buatss");
-        return entity;
-    }
-
-    public CustomerDto provideCustomerDto() {
-        CustomerDto dto = new CustomerDto();
-        dto.setId(1);
-        dto.setName("buatss");
-        return dto;
-    }
-
     public DessertEntity provideDessertEntity() {
         DessertEntity entity = new DessertEntity();
         entity.setId(1);

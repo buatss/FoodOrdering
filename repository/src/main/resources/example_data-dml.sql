@@ -2,10 +2,6 @@ INSERT INTO cuisines (name) VALUES ('Polish')
 INSERT INTO cuisines (name) VALUES ('Mexican')
 INSERT INTO cuisines (name) VALUES ('Italian')
 
-INSERT INTO customers (name) VALUES ('buatss')
-INSERT INTO customers (name) VALUES ('Marcus Kruber')
-INSERT INTO customers (name) VALUES ('Victor Saltzpyre')
-
 INSERT INTO desserts (name, price, cuisine_id) VALUES ('Ice cream', '3.99', '1')
 INSERT INTO desserts (name, price, cuisine_id) VALUES ('Waffles', '4.99', '1')
 INSERT INTO desserts (name, price, cuisine_id) VALUES ('Pancakes', '4.99', '1')

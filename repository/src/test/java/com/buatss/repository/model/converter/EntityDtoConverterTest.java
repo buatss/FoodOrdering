@@ -42,22 +42,6 @@ class EntityDtoConverterTest {
     }
 
     @Test
-    void ConvertCustomerEntityToDto() {
-        CustomerEntity given = provider.provideCustomerEntity();
-        CustomerDto expected = provider.provideCustomerDto();
-
-        assertEquals(expected, converter.convertEntityToDto(given));
-    }
-
-    @Test
-    void ConvertDessertEntityToDto() {
-        CustomerEntity given = provider.provideCustomerEntity();
-        CustomerDto expected = provider.provideCustomerDto();
-
-        assertEquals(expected, converter.convertEntityToDto(given));
-    }
-
-    @Test
     void ConvertDrinkEntityToDto() {
         DrinkEntity given = provider.provideDrinkEntity();
         DrinkDto expected = provider.provideDrinkDto();
