@@ -1,10 +1,11 @@
 package com.buatss.ui;
 
 import com.buatss.repository.model.entity.CuisineEntity;
-import com.buatss.service.logic.CuisineService;
-import com.buatss.service.logic.OrderService;
+import com.buatss.service.CuisineService;
+import com.buatss.service.OrderService;
 import org.springframework.stereotype.Component;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 @Component
@@ -89,14 +90,17 @@ public class UserInterface {
         int[] index = {0};
         cuisineService.getCuisines()
                       .stream()
-                      .map(cuisine -> String.format("%d, %s", ++index[0], cuisine.getName()))
+                      .map(cuisine -> String.format("%d. %s", ++index[0], cuisine.getName()))
                       .forEach(System.out::println);
         int selected;
         while (true) {
-            if (scanner.hasNextInt()) {
+            System.out.println("Please select cuisine by inserting it's number:");
+            try {
                 selected = scanner.nextInt();
-                scanner.nextLine();
                 break;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid argument, try again.");
+                scanner.nextLine();
             }
         }
         return null;

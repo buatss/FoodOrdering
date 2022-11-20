@@ -1,10 +1,10 @@
-package com.buatss.service.logic.impl;
+package com.buatss.service.impl;
 
 import com.buatss.repository.dao.OrderRepository;
 import com.buatss.repository.model.dto.OrderDto;
 import com.buatss.repository.model.entity.AbstractProductEntity;
 import com.buatss.repository.model.entity.OrderEntity;
-import com.buatss.service.logic.OrderService;
+import com.buatss.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

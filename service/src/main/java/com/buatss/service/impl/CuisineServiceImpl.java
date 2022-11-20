@@ -1,8 +1,8 @@
-package com.buatss.service.logic.impl;
+package com.buatss.service.impl;
 
 import com.buatss.repository.dao.CuisineRepository;
 import com.buatss.repository.model.dto.CuisineDto;
-import com.buatss.service.logic.CuisineService;
+import com.buatss.service.CuisineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

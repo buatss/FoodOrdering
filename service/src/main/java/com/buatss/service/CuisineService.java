@@ -1,4 +1,4 @@
-package com.buatss.service.logic;
+package com.buatss.service;
 
 import com.buatss.repository.model.dto.CuisineDto;
 
