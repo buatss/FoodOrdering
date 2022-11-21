@@ -18,6 +18,10 @@ public class CuisineServiceImpl implements CuisineService {
 
     private final DrinkExtrasRepository drinkExtrasRepository;
 
+    private final int DEFAULT_PAGE_NUMBER = 1;
+
+    private final int DEFAULT_PAGE_SIZE = 5;
+
     @Autowired
     public CuisineServiceImpl(CuisineRepository repository, DrinkExtrasRepository drinkExtrasRepository) {
         this.cuisineRepository = repository;
@@ -26,8 +30,10 @@ public class CuisineServiceImpl implements CuisineService {
 
     @Override
     public TreeSet<CuisineDto> getCuisines() {
-        Optional<TreeSet<CuisineDto>> cuisinesResult = cuisineRepository.findPageById(1, 5);
-        Optional<TreeSet<DrinkExtrasDto>> drinkExtrasResult = drinkExtrasRepository.findPageById(1, 5);
+        Optional<TreeSet<CuisineDto>> cuisinesResult =
+                cuisineRepository.findPageById(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
+        Optional<TreeSet<DrinkExtrasDto>> drinkExtrasResult =
+                drinkExtrasRepository.findPageById(DEFAULT_PAGE_NUMBER, DEFAULT_PAGE_SIZE);
         if (cuisinesResult.isPresent() && drinkExtrasResult.isPresent()) {
             cuisinesResult.get().forEach(cuisine -> cuisine.setDrinkExtras(drinkExtrasResult.get()));
             return cuisinesResult.get();
