@@ -1,5 +1,6 @@
 package com.buatss.ui;
 
+import com.buatss.constant.MessagesConstants;
 import com.buatss.repository.model.converter.EntityDtoConverter;
 import com.buatss.repository.model.dto.*;
 import com.buatss.repository.model.entity.*;
@@ -70,28 +71,31 @@ public class UserInterface {
     }
 
     private void printExitMessage() {
-        System.out.println("Thank you for visiting our restaurant!");
+        System.out.println(MessagesConstants.EXIT_MESSAGE);
     }
 
     private boolean askToRetry() {
-        System.out.println("You haven't chosen lunch nor drink, do you want to retry?");
-        System.out.println("Type 'yes' to retry otherwise you will leave application.");
-        return scanner.nextLine().equalsIgnoreCase("yes");
+        System.out.println(MessagesConstants.ASK_TO_RETRY);
+        System.out.println();
+        return scanner.nextLine().equalsIgnoreCase(MessagesConstants.YES);
     }
 
     private void printBill() {
         OrderDto orderDto = orderService.createOrder(order);
-        System.out.println("You've ordered:");
+        System.out.println(MessagesConstants.YOU_HAVE_ORDERED);
         int index = 0;
         index = printOrderedProducts(orderDto.getMeals(), index);
         index = printOrderedProducts(orderDto.getDesserts(), index);
         index = printOrderedProducts(orderDto.getDrinks(), index);
         printOrderedProducts(orderDto.getDrinkExtras(), index);
-        System.out.printf("Your order costs in total: %8s PLN%n", orderDto.getTotalPrice());
+        System.out.printf(
+                MessagesConstants.TOTAL_COST + ": %8s " + MessagesConstants.CURRENCY + "%n",
+                orderDto.getTotalPrice()
+        );
     }
 
     private void interactiveAskForDrinkExtraOrder() {
-        System.out.println("Please select drink extra from menu. In case you don't want any enter 0.");
+        System.out.println(MessagesConstants.ASK_TO_SELECT_DRINK_EXTRA_FROM_MENU);
         Optional<AbstractProductDto<?>> result =
                 interactiveSelectProductFromCollection(selectedCuisine.getDrinkExtras(), true);
         if (result.isPresent()) {
@@ -102,7 +106,7 @@ public class UserInterface {
     }
 
     private void interactiveAskForDrinkOrder() {
-        System.out.println("Please select drink from menu.");
+        System.out.println(MessagesConstants.ASK_TO_ORDER_DRINK_FROM_MENU);
         Optional<AbstractProductDto<?>> result =
                 interactiveSelectProductFromCollection(selectedCuisine.getDrinks(), false);
         if (result.isPresent()) {
@@ -113,7 +117,7 @@ public class UserInterface {
     }
 
     private void interactiveAskForDessertOrder() {
-        System.out.println("Please select dessert from menu.");
+        System.out.println(MessagesConstants.ASK_TO_SELECT_DESSERT_FROM_MENU);
         Optional<AbstractProductDto<?>> result =
                 interactiveSelectProductFromCollection(selectedCuisine.getDesserts(), true);
         if (result.isPresent()) {
@@ -124,7 +128,7 @@ public class UserInterface {
     }
 
     private void interactiveAskForMainCourseOrder() {
-        System.out.println("Please select main course from menu.");
+        System.out.println(MessagesConstants.ASK_TO_SELECT_COURSE_FROM_MENU);
         Optional<AbstractProductDto<?>> result =
                 interactiveSelectProductFromCollection(selectedCuisine.getMeals(), false);
         if (result.isPresent()) {
@@ -135,49 +139,48 @@ public class UserInterface {
     }
 
     private boolean askForDrink() {
-        System.out.println("Do you wish to order drink? ");
-        System.out.println("Type 'yes' to order drink otherwise this step will be skipped.");
-        return scanner.nextLine().equalsIgnoreCase("yes");
+        System.out.println(MessagesConstants.ASK_TO_ORDER_DRINK);
+
+        return scanner.nextLine().equalsIgnoreCase(MessagesConstants.YES);
     }
 
     private boolean askForLunch() {
-        System.out.println(
-                "Do you wish to order lunch? Lunch consists one main course(mandatory) and one dessert(optional).");
-        System.out.println("Type 'yes' to order lunch otherwise this step will be skipped.");
-        return scanner.nextLine().equalsIgnoreCase("yes");
+        System.out.println(MessagesConstants.ASK_TO_ORDER_LUNCH);
+        return scanner.nextLine().equalsIgnoreCase(MessagesConstants.YES);
     }
 
     private void printSelectedCuisineMenu() {
-        printIndexedProductsList("Main Courses", selectedCuisine.getMeals());
-        printIndexedProductsList("Desserts", selectedCuisine.getDesserts());
-        printIndexedProductsList("Drinks", selectedCuisine.getDrinks());
-        printIndexedProductsList("Drink Extras", selectedCuisine.getDrinkExtras());
+        printIndexedProductsList(MessagesConstants.MAIN_COURSES, selectedCuisine.getMeals());
+        printIndexedProductsList(MessagesConstants.DESSERTS, selectedCuisine.getDesserts());
+        printIndexedProductsList(MessagesConstants.DRINKS, selectedCuisine.getDrinks());
+        printIndexedProductsList(MessagesConstants.DRINK_EXTRAS, selectedCuisine.getDrinkExtras());
     }
 
     private void interactivelySelectCuisine() {
-        System.out.println("Available cuisines:");
+        System.out.println(MessagesConstants.AVAILABLE_CUISINES);
         List<CuisineDto> cuisines = new ArrayList<>(cuisineService.getCuisines());
         cuisines.stream()
                 .map(cuisine -> String.format("%d. %s", 1 + cuisines.indexOf(cuisine), cuisine.getName()))
                 .forEach(System.out::println);
         int selected;
-        System.out.println("Please select cuisine by inserting it's number:");
+        System.out.println(MessagesConstants.ASK_TO_SELECT_CUISINE);
         while (true) {
             try {
                 selected = scanner.nextInt();
                 selectedCuisine = cuisines.get(--selected);
                 break;
             } catch (InputMismatchException | IndexOutOfBoundsException e) {
-                System.out.println("Invalid argument, try again.");
+                System.out.println(MessagesConstants.INVALID_ARGUMENT);
             } finally {
                 scanner.nextLine();
             }
         }
-        System.out.println("You have selected " + selectedCuisine.getName() + " cuisine.");
+        System.out.println(
+                MessagesConstants.YOU_HAVE_SELECTED + selectedCuisine.getName() + MessagesConstants.CUISINE + ".");
     }
 
     private void printWelcomeMessage() {
-        System.out.println("Welcome in food ordering system!");
+        System.out.println(MessagesConstants.WELCOME);
     }
 
     private void printIndexedProductsList(String label, Set<? extends AbstractProductDto<?>> products) {
@@ -206,7 +209,7 @@ public class UserInterface {
                 selectedProduct = products.get(--selected);
                 return Optional.of(selectedProduct);
             } catch (InputMismatchException | IndexOutOfBoundsException e) {
-                System.out.println("Invalid argument, try again.");
+                System.out.println(MessagesConstants.INVALID_ARGUMENT);
             } finally {
                 scanner.nextLine();
             }
@@ -215,13 +218,11 @@ public class UserInterface {
 
     private int printOrderedProducts(Collection<? extends AbstractProductDto<?>> collection, int startIndex) {
         int[] index = {startIndex};
-        collection.stream()
-                  .map(product -> String.format("| %-2s | %-20s | %5s PLN |",
-                          ++index[0] + ".",
-                          product.getName(),
-                          product.getPrice()
-                  ))
-                  .forEach(System.out::println);
+        collection.stream().map(product -> String.format("| %-2s | %-20s | %5s " + MessagesConstants.CURRENCY + " |",
+                ++index[0] + ".",
+                product.getName(),
+                product.getPrice()
+        )).forEach(System.out::println);
         return index[0];
     }
 }
