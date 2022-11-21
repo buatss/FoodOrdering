@@ -81,13 +81,19 @@ public class UserInterface {
 
     private void printBill() {
         OrderDto orderDto = orderService.createOrder(order);
-        System.out.println("Your order costs in total: " + orderDto.getTotalPrice() + " PLN");
+        System.out.println("You've ordered:");
+        int index = 0;
+        index = printOrderedProducts(orderDto.getMeals(), index);
+        index = printOrderedProducts(orderDto.getDesserts(), index);
+        index = printOrderedProducts(orderDto.getDrinks(), index);
+        printOrderedProducts(orderDto.getDrinkExtras(), index);
+        System.out.printf("Your order costs in total: %8s PLN%n", orderDto.getTotalPrice());
     }
 
     private void interactiveAskForDrinkExtraOrder() {
-        System.out.println("Please select drink extra from menu.");
+        System.out.println("Please select drink extra from menu. In case you don't want any enter 0.");
         Optional<AbstractProductDto<?>> result =
-                interactiveSelectProductFromCollection(selectedCuisine.getDrinkExtras(), false);
+                interactiveSelectProductFromCollection(selectedCuisine.getDrinkExtras(), true);
         if (result.isPresent()) {
             DrinkExtrasDto dto = (DrinkExtrasDto) result.get();
             DrinkExtrasEntity entity = converter.convertDtoToEntity(dto);
@@ -205,5 +211,17 @@ public class UserInterface {
                 scanner.nextLine();
             }
         }
+    }
+
+    private int printOrderedProducts(Collection<? extends AbstractProductDto<?>> collection, int startIndex) {
+        int[] index = {startIndex};
+        collection.stream()
+                  .map(product -> String.format("| %-2s | %-20s | %5s PLN |",
+                          ++index[0] + ".",
+                          product.getName(),
+                          product.getPrice()
+                  ))
+                  .forEach(System.out::println);
+        return index[0];
     }
 }
