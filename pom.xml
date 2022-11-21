@@ -22,7 +22,7 @@
     </modules>
 
     <properties>
-        <start-class>com.buatss.ui.Application</start-class>
+        <start-class>com.buatss.application.Application</start-class>
 
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
