@@ -14,12 +14,11 @@ public class ProductionDataInitializer {
 
     @Transactional
     public void loadInitialData() throws FileNotFoundException {
-        final File initialFile = new File("repository/src/main/resources/prodData.sql");
+        final File initialFile = new File("../repository/src/main/resources/prodData.sql");
         final InputStream targetStream = new DataInputStream(new FileInputStream(initialFile));
         new BufferedReader(new InputStreamReader(targetStream)).lines()
                                                                .filter(line -> line.startsWith("INSERT INTO"))
                                                                .forEach(query -> entityManager.createNativeQuery(query)
                                                                                               .executeUpdate());
-
     }
 }
