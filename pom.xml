@@ -13,8 +13,9 @@
 
     <groupId>com.buatss</groupId>
     <artifactId>FoodOrderingApp</artifactId>
-    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
     <modules>
         <module>repository</module>
         <module>service</module>
