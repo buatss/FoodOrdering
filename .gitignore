@@ -1,5 +1,5 @@
 /.idea/
-/presentation/target/
 /repository/target/
 /application/target/
 **/*.iml
+/service/target/

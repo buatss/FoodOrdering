@@ -13,8 +13,9 @@
 
     <groupId>com.buatss</groupId>
     <artifactId>FoodOrderingApp</artifactId>
-    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
     <modules>
         <module>repository</module>
         <module>service</module>
@@ -22,7 +23,7 @@
     </modules>
 
     <properties>
-        <start-class>com.buatss.presentation.Application</start-class>
+        <start-class>com.buatss.application.Application</start-class>
 
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -39,6 +40,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
         </dependency>
     </dependencies>
 </project>
